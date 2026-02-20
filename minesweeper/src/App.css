@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+.cell1, .cell2 {
+    width: 2.5em;
+    height: 2.5em;
+    border-style: outset;
+    border-color: black;
+    border-width: 2.5px;
+    margin: 1px;
+}
+
+.cell1 {
+    background-color: #00a63e;
+}
+
+.cell2 {
+    background-color: #00c950;
+}
+
+.cell1:hover, .cell2:hover {
+    background-color: orange;
+}
+

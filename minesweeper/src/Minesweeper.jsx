@@ -1,11 +1,9 @@
 
 
-function Minesweeper() {
+function Minesweeper({ ref }) {
 
     return (
-        <>
-          
-        </>
+          <div ref={ref} ></div>          
     );
 }
 
