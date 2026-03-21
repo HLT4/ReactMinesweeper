@@ -11,7 +11,6 @@ function App() {
     <>
       <Settings game={game}/>
       <Minesweeper ref={game}/>
-      <button onClick={() => console.log(game.current)}>Paina</button>
     </>
   )
 }
