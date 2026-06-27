@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import createGame from "./functions/createGame.js";
 
 /**
  * @returns Minesweeper grid
@@ -7,6 +8,10 @@ function Table({ settings }) {
 
     const first = useRef(true);
 
+    useEffect(() => {
+        first.current = true;
+    }, [settings])
+
     // Käsittelijä klikkaukselle
     const testi = (e) => {
         console.log("testi", e);
@@ -14,6 +19,7 @@ function Table({ settings }) {
         if (first.current) {
             console.log("first");
             first.current = false;
+            createGame(settings, [0, 0]);
         }
     }
 
