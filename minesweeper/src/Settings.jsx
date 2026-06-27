@@ -1,4 +1,4 @@
-import createGame from './functions/createGame/';
+import createGame from './functions/createGame.jsx';
 
 /**
  * @returns React component for choosing the settings for the minesweeper game
@@ -30,6 +30,7 @@ function Settings({ game }) {
             }
 
             // TODO minimum and maximum sizes
+            // TODO three difficulty levels instead of manual mine amounts
 
             // Check that the mine amount doesn't exceed the board size
             if (settings.length == 2 && value >= settings[0] * settings[1]) {

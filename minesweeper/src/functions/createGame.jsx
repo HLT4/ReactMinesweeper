@@ -1,5 +1,5 @@
 function createGame(game, settings) {
-    console.log(game, settings);
+    console.log("settings", game, settings);
 
     const table = document.createElement("table");
     let cellColor = 1;
@@ -8,17 +8,19 @@ function createGame(game, settings) {
     for (let i = 0; i < settings[0]; i++) {
 	const tr = document.createElement("tr");
 
-	cellColor = cellColor ? 0 : 1;
+	if (settings[1] % 2 == 0) {
+		cellColor = cellColor ? 0 : 1;
+	}
 
 	for (let j = 0; j < settings[1]; j++) {
 	    const td = document.createElement("td");
 	    // Styles not done with tailwind because it doesn't have border: outset;
 	    if (cellColor === 0) {
-		td.className = "cell1";
-		cellColor = 1;
+			td.className = "cell1";
+			cellColor = 1;
 	    } else {
-		td.className = "cell2";
-		cellColor = 0;
+			td.className = "cell2";
+			cellColor = 0;
 	    }
 
 	    tr.appendChild(td);
