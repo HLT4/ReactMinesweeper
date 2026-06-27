@@ -1,9 +1,7 @@
-import createGame from './functions/createGame.jsx';
-
 /**
  * @returns React component for choosing the settings for the minesweeper game
  */
-function Settings({ game }) {
+function Settings({ game, setSettings }) {
 
     console.log(game);
 
@@ -41,7 +39,7 @@ function Settings({ game }) {
             settings.push(value);
         }
 
-        createGame(game, settings);
+        setSettings(settings);
         form.reset();
     };
 
