@@ -1,9 +1,7 @@
 /**
  * @returns React component for choosing the settings for the minesweeper game
  */
-function Settings({ game, setSettings }) {
-
-    console.log(game);
+function Settings({ setSettings }) {
 
     const play = (event) => {
         event.preventDefault();

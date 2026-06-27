@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-.cell1, .cell2 {
+.cell1, .cell2, .klikattu {
     width: 2.5em;
     height: 2.5em;
     border-style: outset;
@@ -21,3 +21,6 @@
     background-color: orange;
 }
 
+.klikattu {
+    background-color: red;
+}

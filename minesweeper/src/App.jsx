@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <Settings game={game} setSettings={setSettings} />
+      <Settings setSettings={setSettings} />
       <Minesweeper ref={game} settings={settings}/>
     </>
   )

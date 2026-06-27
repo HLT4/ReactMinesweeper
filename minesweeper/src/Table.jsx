@@ -1,14 +1,27 @@
+import { useRef } from "react";
 
 /**
  * @returns Minesweeper grid
  */
 function Table({ settings }) {
 
-    console.log("Table.jsx")
+    const first = useRef(true);
+
+    // Käsittelijä klikkaukselle
+    const testi = (e) => {
+        console.log("testi", e);
+        e.target.className = "klikattu";
+        if (first.current) {
+            console.log("first");
+            first.current = false;
+        }
+    }
+
     if (!settings) { return ( <></> ); }
 
     let cellColor = 1;
     let table = [];
+
     for (let i = 0; i < settings[0]; i++) {
         let tdt = [];
 
@@ -19,12 +32,12 @@ function Table({ settings }) {
         for (let j = 0; j < settings[1]; j++) {
             if (cellColor === 0) {
                 tdt.push(
-                    <td key={j} className="cell1"></td>
+                    <td key={j} className="cell1" onClick={testi}></td>
                 );
                 cellColor = 1;
             } else {
                 tdt.push(
-                    <td key={j} className="cell2"></td>
+                    <td key={j} className="cell2" onClick={testi}></td>
                 );
                 cellColor = 0;
             }
