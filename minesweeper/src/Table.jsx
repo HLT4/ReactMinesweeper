@@ -12,14 +12,16 @@ function Table({ settings }) {
         first.current = true;
     }, [settings])
 
-    // Käsittelijä klikkaukselle
-    const testi = (e) => {
+    // Click handler
+    const testi = (e, coord) => {
         console.log("testi", e);
         e.target.className = "klikattu";
+
+        // Create game if first click
         if (first.current) {
             console.log("first");
             first.current = false;
-            createGame(settings, [0, 0]);
+            createGame(settings, coord);
         }
     }
 
@@ -38,12 +40,12 @@ function Table({ settings }) {
         for (let j = 0; j < settings[1]; j++) {
             if (cellColor === 0) {
                 tdt.push(
-                    <td key={j} className="cell1" onClick={testi}></td>
+                    <td key={j} className="cell1" onClick={(e) => testi(e, [i, j])}></td>
                 );
                 cellColor = 1;
             } else {
                 tdt.push(
-                    <td key={j} className="cell2" onClick={testi}></td>
+                    <td key={j} className="cell2" onClick={(e) => testi(e, [i, j])}></td>
                 );
                 cellColor = 0;
             }
