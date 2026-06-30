@@ -22,8 +22,10 @@ function createGame(settings, firstCell) {
 			continue;
 		}
 
+		// Place a mine at a random coordinate
 		grid[y][x] = -1;
 
+		// Update minecount on surrounding cells
 		for (let j = x - 1; j <= x + 1; j++) {
 			if (j < 0 || j >= grid[0].length) continue;
 
@@ -37,8 +39,6 @@ function createGame(settings, firstCell) {
 		}
 	}
 
-
-
 	// Debug-logging
 	for (let i = 0; i < grid.length; i++) {
 		let row = "";
@@ -48,6 +48,8 @@ function createGame(settings, firstCell) {
 		}
 		console.log(row)
 	}
+
+	return grid;
 }
 
 export default createGame;

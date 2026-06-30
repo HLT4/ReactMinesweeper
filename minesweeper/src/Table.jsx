@@ -2,9 +2,10 @@ import { useEffect, useRef } from "react";
 import createGame from "./functions/createGame.js";
 
 /**
- * @returns Minesweeper grid
+ * @param {Array} game Minesweeper grid as an array of integers
+ * @returns Minesweeper grid as React-component
  */
-function Table({ settings }) {
+function Table({ game, settings }) {
 
     const first = useRef(true);
 
@@ -14,15 +15,26 @@ function Table({ settings }) {
 
     // Click handler
     const testi = (e, coord) => {
-        console.log("testi", e);
+        // console.log("testi", e);
+        console.log(e.target)
+        // TODO keksi joku parempi
+        if (e.target.className === "klikattu" || e.target.localName === "p") { return; }
+
         e.target.className = "klikattu";
 
         // Create game if first click
         if (first.current) {
             console.log("first");
             first.current = false;
-            createGame(settings, coord);
+            game.current = createGame(settings, coord);
         }
+
+        console.log("game.current", game.current)
+
+        let p = document.createElement("p");
+        p.textContent = game.current[coord[0]][coord[1]];
+        p.className = "cellNumber";
+        e.target.appendChild(p);
     }
 
     if (!settings) { return ( <></> ); }

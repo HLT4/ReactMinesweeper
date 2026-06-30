@@ -2,15 +2,15 @@ import { useEffect } from "react";
 import Table from "./Table.jsx";
 
 
-function Minesweeper({ ref, settings }) {
+function Minesweeper({ game, settings }) {
 
     useEffect(() => {
         console.log("settings", settings);
     }, [settings]);
 
     return (
-          <div ref={ref} >
-            <Table settings={settings}/>
+          <div>
+            <Table game={game} settings={settings}/>
           </div>          
     );
 }

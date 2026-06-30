@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <Settings setSettings={setSettings} />
-      <Minesweeper ref={game} settings={settings}/>
+      <Minesweeper game={game} settings={settings}/>
     </>
   )
 }
