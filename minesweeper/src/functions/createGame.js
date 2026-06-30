@@ -9,24 +9,41 @@ function createGame(settings, firstCell) {
 	const mines = settings[2];
 
 	let grid = Array.from({ length: rows }, () => Array(cols).fill(0));
+	console.log(grid)
+	console.log(grid.length)
 
 	for (let i = 0; i < mines; i++) {
 		let x = Math.floor(Math.random() * cols);
 		let y = Math.floor(Math.random() * rows);
 
-		if (grid[x][y] === -1 || (x === firstCell[1] && y === firstCell[0])) {
+		if (grid[y][x] === -1 || (x === firstCell[1] && y === firstCell[0])) {
 			// Maybe not the best since this could technically lead to an infinite loop
 			i--;
 			continue;
 		}
 
-		grid[x][y] = -1;
+		grid[y][x] = -1;
+
+		for (let j = x - 1; j <= x + 1; j++) {
+			if (j < 0 || j >= grid[0].length) continue;
+
+			for (let k = y - 1; k <= y + 1; k++) {
+				if (k < 0 || k >= grid.length) continue;
+
+				if (grid[k][j] != -1) {
+					grid[k][j] += 1;
+				}
+			}
+		}
 	}
 
-	for (let i = 0; i < rows; i++) {
+
+
+	// Debug-logging
+	for (let i = 0; i < grid.length; i++) {
 		let row = "";
-		for (let j = 0; j < cols; j++) {
-			row += grid[i][j] === -1 ? "#" : 0;
+		for (let j = 0; j < grid[0].length; j++) {
+			row += grid[i][j] === -1 ? "#" : grid[i][j];
 			row += " ";
 		}
 		console.log(row)
