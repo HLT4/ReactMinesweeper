@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-.cell1, .cell2, .klikattu {
+.cell1, .cell2, .klikattu, .pommi {
     width: 2.5em;
     height: 2.5em;
     border-style: outset;
@@ -22,8 +22,12 @@
     background-color: orange;
 }
 
-.klikattu {
+.pommi {
     background-color: red;
+}
+
+.klikattu {
+    background-color: #a1a0a9;
 }
 
 .cellNumber {

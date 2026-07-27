@@ -8,22 +8,64 @@ import createGame from "./functions/createGame.js";
 function Table({ game, settings }) {
 
     const first = useRef(true);
+    const lost = useRef(false);
 
     useEffect(() => {
         first.current = true;
+        lost.current = false;
         let nums = document.getElementsByClassName("cellNumber");
         while (nums.length > 0) {
             nums[0].remove();
         }
+
+        const rows = document.getElementsByTagName("tbody")[0].children;
+
+        let cellColor = 1;
+
+        for (let i = 0; i < rows.length; i++) {
+            const cells = rows[i].children;
+            
+            if (settings[1] % 2 == 0) {
+                cellColor = cellColor ? 0 : 1;
+            }
+            
+            for (let j = 0; j < cells.length; j++) {
+                cells[j].className = cellColor === 0 ? "cell1" : "cell2";    
+                cellColor = cellColor === 1 ? 0 : 1;
+            }
+        }
+
     }, [settings])
+
+    // Reveals mines and stops you from opening other cells and such
+    const loseGame = () => {
+        lost.current = true;
+
+        const rows = document.getElementsByTagName("tbody")[0].children;
+
+        for (let i = 0; i < rows.length; i++) {
+            const cells = rows[i].children;
+            for (let j = 0; j < cells.length; j++) {
+                if (game.current[i][j] === -1 && cells[j].firstChild === null) {
+                    let p = document.createElement("p");
+                    p.textContent = "💣";
+                    p.className = "cellNumber";
+                    cells[j].appendChild(p);
+                    cells[j].className = "pommi";
+                }
+            }
+        }
+
+    }
 
     // Click handler for left clicks
     const openCell = (e, coord) => {
         e.preventDefault();
         // console.log("testi", e);
-        console.log(e.target)
-        // TODO keksi joku parempi
+        // console.log(e.target)
+        
         if (e.target.className === "klikattu" || e.target.firstChild != null) { return; }
+        if (lost.current) { return; }
 
         e.target.className = "klikattu";
         // Create game if first click
@@ -40,6 +82,12 @@ function Table({ game, settings }) {
         p.textContent = num === -1 ? "💣" : num;
         p.className = "cellNumber";
         e.target.appendChild(p);
+
+        if (num === -1) {
+            e.target.className = "pommi";
+            console.log("lost")
+            loseGame();
+        }
     };
 
     // click handler for right clicks
