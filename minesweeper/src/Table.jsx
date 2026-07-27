@@ -69,12 +69,34 @@ function Table({ game, settings }) {
         console.log("Win!");
     };
 
+    // Opens surrounding cells newar zeroes
+    const handleZero = (coord) => {
+
+        const y = coord[0] - 1;
+        const x = coord[1] - 1;
+
+        const rows = document.getElementsByTagName("tbody")[0].children;
+
+        for (let i = 0; i <= 2; i++) {
+            // Don't try to click cells out of bounds
+            if (y + i === -1 || y + i >= rows.length) { continue; }
+        
+            //console.log("y", y, "i", i, "y+i", y + i)
+            let row = rows[y + i].children;
+
+            for (let j = 0; j <= 2; j++) {
+                // Don't try to click cells out of bounds
+                if (x + j === -1 || x + j >= row.length) { continue; }
+                row[x + j].click();
+            }
+
+        }
+
+    };
+
     // Click handler for left clicks
     const openCell = (e, coord) => {
         e.preventDefault();
-        // console.log("testi", e);
-        // console.log(e.target)
-        
         if (e.target.className === "klikattu" || e.target.firstChild != null) { return; }
         if (lost.current) { return; }
 
@@ -100,6 +122,11 @@ function Table({ game, settings }) {
             loseGame();
         } else {
             cellsleft.current = cellsleft.current - 1;
+            
+            if (num === 0) {
+                handleZero(coord);
+            }
+
             if (cellsleft.current === 0) {
                 winGame();
             }
