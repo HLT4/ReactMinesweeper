@@ -11,17 +11,21 @@ function Table({ game, settings }) {
 
     useEffect(() => {
         first.current = true;
+        let nums = document.getElementsByClassName("cellNumber");
+        while (nums.length > 0) {
+            nums[0].remove();
+        }
     }, [settings])
 
     // Click handler
     const testi = (e, coord) => {
-        // console.log("testi", e);
+        console.log("testi", e);
         console.log(e.target)
         // TODO keksi joku parempi
         if (e.target.className === "klikattu" || e.target.localName === "p") { return; }
 
-        e.target.className = "klikattu";
 
+        e.target.className = "klikattu";
         // Create game if first click
         if (first.current) {
             console.log("first");
