@@ -7,6 +7,7 @@
     border-color: black;
     border-width: 2.5px;
     margin: 1px;
+    text-align: center;
 }
 
 .cell1 {
@@ -23,7 +24,6 @@
 
 .klikattu {
     background-color: red;
-    text-align: center;
 }
 
 .cellNumber {

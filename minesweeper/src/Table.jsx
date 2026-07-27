@@ -17,13 +17,13 @@ function Table({ game, settings }) {
         }
     }, [settings])
 
-    // Click handler
-    const testi = (e, coord) => {
-        console.log("testi", e);
+    // Click handler for left clicks
+    const openCell = (e, coord) => {
+        e.preventDefault();
+        // console.log("testi", e);
         console.log(e.target)
         // TODO keksi joku parempi
-        if (e.target.className === "klikattu" || e.target.localName === "p") { return; }
-
+        if (e.target.className === "klikattu" || e.target.firstChild != null) { return; }
 
         e.target.className = "klikattu";
         // Create game if first click
@@ -36,10 +36,35 @@ function Table({ game, settings }) {
         console.log("game.current", game.current)
 
         let p = document.createElement("p");
-        p.textContent = game.current[coord[0]][coord[1]];
+        let num = game.current[coord[0]][coord[1]];
+        p.textContent = num === -1 ? "💣" : num;
         p.className = "cellNumber";
         e.target.appendChild(p);
-    }
+    };
+
+    // click handler for right clicks
+    const flagCell = (e) => {
+        e.preventDefault();
+
+        if (e.target.className === "klikattu") { return; }
+
+        if (e.target.localName === "p") {
+            if (e.target.textContent === "🚩") {
+                e.target.remove();
+            }
+            return;
+        }
+
+        if (e.target.firstChild != null) {
+            e.target.firstChild.remove();
+            return;
+        }
+
+        let p = document.createElement("p");
+        p.textContent = "🚩";
+        p.className = "cellNumber";
+        e.target.appendChild(p);
+    };
 
     if (!settings) { return ( <></> ); }
 
@@ -56,12 +81,12 @@ function Table({ game, settings }) {
         for (let j = 0; j < settings[1]; j++) {
             if (cellColor === 0) {
                 tdt.push(
-                    <td key={j} className="cell1" onClick={(e) => testi(e, [i, j])}></td>
+                    <td key={j} className="cell1" onClick={(e) => openCell(e, [i, j])} onContextMenu={(e) => flagCell(e)}></td>
                 );
                 cellColor = 1;
             } else {
                 tdt.push(
-                    <td key={j} className="cell2" onClick={(e) => testi(e, [i, j])}></td>
+                    <td key={j} className="cell2" onClick={(e) => openCell(e, [i, j])} onContextMenu={(e) => flagCell(e)}></td>
                 );
                 cellColor = 0;
             }
