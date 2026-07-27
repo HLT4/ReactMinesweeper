@@ -16,10 +16,19 @@ function createGame(settings, firstCell) {
 		let x = Math.floor(Math.random() * cols);
 		let y = Math.floor(Math.random() * rows);
 
+		// Make sure first cell is not a mine and mines aren't placed on other mines
 		if (grid[y][x] === -1 || (x === firstCell[1] && y === firstCell[0])) {
-			// Maybe not the best since this could technically lead to an infinite loop
+			// Maybe not the best since this could *technically* lead to an infinite loop
 			i--;
 			continue;
+		}
+
+		// First click is always a zero
+		if ((Math.abs(firstCell[1] - x) <= 1) && (Math.abs(firstCell[0] - y) <= 1)) {
+			if (rows * cols - mines >= 9){
+				i--;
+				continue;
+			}
 		}
 
 		// Place a mine at a random coordinate

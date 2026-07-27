@@ -38,7 +38,7 @@ function Settings({ setSettings }) {
         }
 
         setSettings(settings);
-        form.reset();
+        //form.reset();
     };
 
     // TODO instead of rows, columns and mines, maybe just a selection for
