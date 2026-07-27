@@ -2,17 +2,19 @@ import { useEffect, useRef } from "react";
 import createGame from "./functions/createGame.js";
 
 /**
- * @param {Array} game Minesweeper grid as an array of integers
  * @returns Minesweeper grid as React-component
  */
 function Table({ game, settings }) {
 
     const first = useRef(true);
     const lost = useRef(false);
+    const cellsleft = useRef(-1);
 
     useEffect(() => {
         first.current = true;
         lost.current = false;
+        cellsleft.current = settings[0] * settings[1] - settings[2];
+
         let nums = document.getElementsByClassName("cellNumber");
         while (nums.length > 0) {
             nums[0].remove();
@@ -58,6 +60,15 @@ function Table({ game, settings }) {
 
     }
 
+    // Wins game
+    const winGame = () => {
+        // To stop clicking on cells
+        lost.current = true;
+
+        // TODO
+        console.log("Win!");
+    };
+
     // Click handler for left clicks
     const openCell = (e, coord) => {
         e.preventDefault();
@@ -75,7 +86,7 @@ function Table({ game, settings }) {
             game.current = createGame(settings, coord);
         }
 
-        console.log("game.current", game.current)
+        // console.log("game.current", game.current)
 
         let p = document.createElement("p");
         let num = game.current[coord[0]][coord[1]];
@@ -87,6 +98,11 @@ function Table({ game, settings }) {
             e.target.className = "pommi";
             console.log("lost")
             loseGame();
+        } else {
+            cellsleft.current = cellsleft.current - 1;
+            if (cellsleft.current === 0) {
+                winGame();
+            }
         }
     };
 
