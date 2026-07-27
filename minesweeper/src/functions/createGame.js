@@ -8,6 +8,8 @@ function createGame(settings, firstCell) {
 	const cols = settings[1];
 	const mines = settings[2];
 
+	let minesPlaced = 0;
+
 	let grid = Array.from({ length: rows }, () => Array(cols).fill(0));
 	console.log(grid)
 	console.log(grid.length)
@@ -25,7 +27,7 @@ function createGame(settings, firstCell) {
 
 		// First click is always a zero
 		if ((Math.abs(firstCell[1] - x) <= 1) && (Math.abs(firstCell[0] - y) <= 1)) {
-			if (rows * cols - mines >= 9){
+			if (rows * cols - 9 > minesPlaced){
 				i--;
 				continue;
 			}
@@ -33,6 +35,7 @@ function createGame(settings, firstCell) {
 
 		// Place a mine at a random coordinate
 		grid[y][x] = -1;
+		minesPlaced++;
 
 		// Update minecount on surrounding cells
 		for (let j = x - 1; j <= x + 1; j++) {
