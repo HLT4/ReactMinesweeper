@@ -9,7 +9,7 @@ function Minesweeper({ game, settings }) {
     }, [settings]);
 
     return (
-          <div>
+          <div className="flex justify-center">
             <Table game={game} settings={settings}/>
           </div>          
     );

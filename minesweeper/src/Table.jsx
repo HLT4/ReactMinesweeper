@@ -137,6 +137,8 @@ function Table({ game, settings }) {
     const flagCell = (e) => {
         e.preventDefault();
 
+        if (lost.current) { return; }
+
         if (e.target.className === "klikattu") { return; }
 
         if (e.target.localName === "p") {
