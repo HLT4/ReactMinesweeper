@@ -48,7 +48,11 @@ function Table({ game, settings, mineCount, setMineCount }) {
         for (let i = 0; i < rows.length; i++) {
             const cells = rows[i].children;
             for (let j = 0; j < cells.length; j++) {
-                if (game.current[i][j] === -1 && cells[j].firstChild === null) {
+                if (game.current[i][j] === -1) {
+                    if (cells[j].firstChild != null) {
+                        cells[j].className = "pommi";
+                        continue;
+                    }
                     let p = document.createElement("p");
                     p.textContent = "💣";
                     p.className = "cellNumber";
@@ -57,6 +61,8 @@ function Table({ game, settings, mineCount, setMineCount }) {
                 }
             }
         }
+
+        alert("Fuck you, you suck! 🖕");
 
     }
 
@@ -67,6 +73,7 @@ function Table({ game, settings, mineCount, setMineCount }) {
 
         // TODO
         console.log("Win!");
+        alert("Goo job! 👍")
     };
 
     // Opens surrounding cells newar zeroes
