@@ -4,7 +4,7 @@ import createGame from "./functions/createGame.js";
 /**
  * @returns Minesweeper grid as React-component
  */
-function Table({ game, settings }) {
+function Table({ game, settings, mineCount, setMineCount }) {
 
     const first = useRef(true);
     const lost = useRef(false);
@@ -144,6 +144,7 @@ function Table({ game, settings }) {
         if (e.target.localName === "p") {
             if (e.target.textContent === "🚩") {
                 e.target.remove();
+                setMineCount(mineCount + 1);
             }
             return;
         }
@@ -157,6 +158,8 @@ function Table({ game, settings }) {
         p.textContent = "🚩";
         p.className = "cellNumber";
         e.target.appendChild(p);
+
+        setMineCount(mineCount - 1);
     };
 
     if (!settings) { return ( <></> ); }

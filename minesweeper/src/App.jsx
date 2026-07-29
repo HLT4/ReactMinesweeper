@@ -2,18 +2,21 @@ import './App.css';
 import React, { useRef, useState } from 'react';
 import Settings from './Settings.jsx';
 import Minesweeper from './Minesweeper.jsx';
+import Minecounter from './Minecounter.jsx';
 
 function App() {
 
   const [settings, setSettings] = useState([0, 0, 0]);
+  const [mineCount, setMineCount] = useState(null);
   const game = useRef(null);
 
   return (
     <>
-      <Settings setSettings={setSettings} />
-      <Minesweeper game={game} settings={settings}/>
+      <Settings setSettings={setSettings} setMineCount={setMineCount} />
+      <Minecounter mineCount={mineCount} />
+      <Minesweeper game={game} settings={settings} mineCount={mineCount} setMineCount={setMineCount} />
     </>
   )
 }
 
-export default App
+export default App;

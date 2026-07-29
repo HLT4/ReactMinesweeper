@@ -1,7 +1,7 @@
 /**
  * @returns React component for choosing the settings for the minesweeper game
  */
-function Settings({ setSettings }) {
+function Settings({ setSettings, setMineCount }) {
 
     const play = (event) => {
         event.preventDefault();
@@ -37,6 +37,7 @@ function Settings({ setSettings }) {
             settings.push(value);
         }
 
+        setMineCount(settings[2]);
         setSettings(settings);
         //form.reset();
     };
