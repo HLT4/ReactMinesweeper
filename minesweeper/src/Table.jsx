@@ -121,6 +121,38 @@ function Table({ game, settings, mineCount, setMineCount }) {
         let num = game.current[coord[0]][coord[1]];
         p.textContent = num === -1 ? "💣" : (num === 0 ? " " : num);
         p.className = "cellNumber";
+
+        let color;
+
+        switch (num){
+            case 1:
+                color = "blue";
+                break;
+            case 2:
+                color = "green";
+                break;
+            case 3:
+                color = "red";
+                break;
+            case 4:
+                color = "darkblue";
+                break;
+            case 5:
+                color = "brown";
+                break;
+            case 6:
+                color = "cyan";
+                break;
+            case 7:
+                color = "black";
+                break;
+            case 8:
+                color = "lightgray";
+                break;
+        }
+
+        p.style.color = color;
+
         e.target.appendChild(p);
 
         if (num === -1) {

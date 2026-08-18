@@ -28,17 +28,12 @@
 }
 
 .klikattu {
-    background-color: #8e8c97;
+    background-color: #9a98a1;
 }
 
 .cellNumber {
-    color: white;
-    font-weight: bold;
-    text-shadow:
-        -1px -1px 0 black,
-         1px -1px 0 black,
-        -1px  1px 0 black,
-         1px  1px 0 black;
+    font-weight: bolder;
+    font-size: larger;
 }
 
 button:hover {
