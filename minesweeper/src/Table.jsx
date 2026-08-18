@@ -166,7 +166,7 @@ function Table({ game, settings, mineCount, setMineCount }) {
                 handleZero(coord);
             }
 
-            if (cellsleft.current === 0) {
+            if (cellsleft.current === 0 && !lost.current) {
                 winGame();
             }
         }
