@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react';
 import Settings from './Settings.jsx';
 import Minesweeper from './Minesweeper.jsx';
 import Minecounter from './Minecounter.jsx';
+import Difficulty from './Difficulty.jsx';
 
 function App() {
 
@@ -12,7 +13,8 @@ function App() {
 
   return (
     <>
-      <Settings setSettings={setSettings} setMineCount={setMineCount} />
+      <Difficulty setSettings={setSettings} setMineCount={setMineCount} />
+      {/* <Settings setSettings={setSettings} setMineCount={setMineCount} /> */}
       <Minecounter mineCount={mineCount} />
       <Minesweeper game={game} settings={settings} mineCount={mineCount} setMineCount={setMineCount} />
     </>

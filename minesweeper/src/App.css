@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 .cell1, .cell2, .klikattu, .pommi {
-    width: 2.5em;
-    height: 2.5em;
+    width: 4vh;
+    height: 4vh;
     border-style: outset;
     border-color: black;
     border-width: 2.5px;
