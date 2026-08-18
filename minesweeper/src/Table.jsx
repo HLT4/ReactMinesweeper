@@ -76,7 +76,7 @@ function Table({ game, settings, mineCount, setMineCount }) {
         alert("Goo job! 👍")
     };
 
-    // Opens surrounding cells newar zeroes
+    // Opens surrounding cells near zeroes
     const handleZero = (coord) => {
 
         const y = coord[0] - 1;
@@ -119,7 +119,7 @@ function Table({ game, settings, mineCount, setMineCount }) {
 
         let p = document.createElement("p");
         let num = game.current[coord[0]][coord[1]];
-        p.textContent = num === -1 ? "💣" : num;
+        p.textContent = num === -1 ? "💣" : (num === 0 ? " " : num);
         p.className = "cellNumber";
         e.target.appendChild(p);
 
