@@ -1,7 +1,11 @@
 /**
  * @returns React component for choosing the settings for the minesweeper game
  */
-function Settings({ setSettings, setMineCount }) {
+function Settings({ setSettings, setMineCount, custom }) {
+
+    if (!custom) {
+        return(<></>);
+    }
 
     const play = (event) => {
         event.preventDefault();
@@ -46,7 +50,7 @@ function Settings({ setSettings, setMineCount }) {
     // easy, medium or hard with a custom game as an option
     return (
         <>
-          <form id="settingsForm" className="flex flex-col gap-2.5 w-xs p-3 pb-11 border rounded-lg bg-green-600 relative">
+          <form id="settingsForm" className="flex flex-col gap-2.5 w-xs p-3 pb-11 border rounded-lg bg-green-600 absolute">
             <div className="justify-between">
               <label htmlFor="rows">Rows:</label>
               <input type="number" id="rows" name="settings" className="text-right border-solid border rounded-md float-right bg-white w-7/10"/>
