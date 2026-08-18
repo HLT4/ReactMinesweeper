@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 .cell1, .cell2, .klikattu, .pommi {
-    width: 4vh;
-    height: 4vh;
+    width: clamp(2em, 4vh, 4em);
+    height: clamp(2em, 4vh, 4em);
     border-style: outset;
     border-color: black;
     border-width: 2.5px;
@@ -28,7 +28,7 @@
 }
 
 .klikattu {
-    background-color: #a1a0a9;
+    background-color: #8e8c97;
 }
 
 .cellNumber {
@@ -39,4 +39,9 @@
          1px -1px 0 black,
         -1px  1px 0 black,
          1px  1px 0 black;
+}
+
+button:hover {
+    background-color: orange;
+    cursor: pointer;
 }
